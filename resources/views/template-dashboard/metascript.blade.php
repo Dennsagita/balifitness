@@ -11,3 +11,6 @@
  <!-- Template Main JS File -->
  <script src="{{ asset('assets/js/main.js')}}"></script>
  <script src="{{ asset('assets/vendor/bootsrap/js/bootstrap.bundle.min.js') }}"></script>
+ 
+ 
+

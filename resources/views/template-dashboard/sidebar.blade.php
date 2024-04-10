@@ -2,7 +2,7 @@
  <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
+      @if (Str::length(Auth::guard('admin')->user()) > 0)
       <li class="nav-item">
         <a class="nav-link collapsed {{ request()->segment(1) == 'dashboard' ? 'bg-primary text-white' : '' }}" href="{{ route('dashboard') }}">
           <i class="bi bi-grid{{ request()->segment(1) == 'dashboard' ? ' text-white' : '' }}"></i>
@@ -38,12 +38,28 @@
       </li><!-- End MATERI Page Nav -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed {{ request()->segment(1) == 'data-logaktivitas' ? 'bg-primary text-white' : '' }}" href="{{ route('data-logaktivitas') }}">
+          <i class="bi bi-card-list {{ request()->segment(1) == 'data-logaktivitas' ? ' text-white' : '' }}"></i>
+          <span>LOG AKTIVITAS</span>
+        </a>
+      </li><!-- End LOG AKTIVITAS Page Nav -->
+      
+      @elseif (Str::length(Auth::guard('member')->user()) > 0)
+      <!-- Materi Member -->
+      <li class="nav-item">
+        <a class="nav-link collapsed {{ request()->segment(1) == 'datamateri' ? 'bg-primary text-white' : '' }}" href="{{ route('datamateri') }}">
+          <i class="bi bi-envelope {{ request()->segment(1) == 'datamateri' ? ' text-white' : '' }}"></i>
+          <span>MATERI</span>
+        </a>
+      </li><!-- End MATERI Page Nav -->
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="pages-register.html">
           <i class="bi bi-card-list"></i>
           <span>LOG AKTIVITAS</span>
         </a>
       </li><!-- End LOG AKTIVITAS Page Nav -->
-
+      @endif
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('logout') }}">
           <i class="bi bi-box-arrow-in-right"></i>

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Logaktivitas;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Member extends Authenticatable
@@ -19,7 +20,10 @@ class Member extends Authenticatable
         'alamat',
         'no_telp',
     ];
-
+    public function logaktivitas()
+    {
+        return $this->hasMany(Logaktivitas::class, 'id_members', 'id');
+    }
 
 
     protected $hidden = [

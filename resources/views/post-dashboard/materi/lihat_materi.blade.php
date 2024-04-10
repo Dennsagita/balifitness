@@ -36,8 +36,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="padding-bottom: 1rem;">Data Materi</h5>
-                        <h1>Detail Materi</h1>
-                        <p>Deskripsi: {{ $materi->deskripsi }}</p>
+                        <h1>{{ $materi->nama }}</h1>
+                        <p>Deskripsi: {!! $materi->deskripsi !!}</p>
                         <p>Kategori: {{ $materi->kategori->nama }}</p>
                         <p>Coach: {{ $materi->coach->nama }}</p>
                         <p>Link Video: <a href="{{ $materi->link_video }}" target="_blank">{{ $materi->link_video }}</a></p>

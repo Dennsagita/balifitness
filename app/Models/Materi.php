@@ -16,6 +16,7 @@ class Materi extends Model
     protected $fillable = [
         'id_kategori',
         'id_coach',
+        'nama',
         'deskripsi',
         'link_video',
     ];
@@ -28,5 +29,10 @@ class Materi extends Model
     public function coach()
     {
         return $this->belongsTo(Coach::class, 'id_coach');
+    }
+
+    public function logaktivitas()
+    {
+        return $this->hasMany(Logaktivitas::class, 'id_coach', 'id');
     }
 }

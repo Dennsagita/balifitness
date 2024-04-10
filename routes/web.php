@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Materi;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\LogaktivitasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,10 +54,25 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/datamateri', [MateriController::class, 'materi'])->name('datamateri');
     Route::get('/datamateri/{id}', [MateriController::class, 'lihat'])->name('lihatmateri');
+    Route::get('/tambah-materi', [MateriController::class, 'create'])->name('tambahmateri');
+    Route::post('/materi-insert', [MateriController::class, 'store'])->name('materi-insert');
+    Route::get('/edit-materi/{id}', [MateriController::class, 'editmateri'])->name('editmateri');
+    Route::put('/materi-update/{id}', [MateriController::class, 'updatemateri'])->name('materi-update');
+    Route::delete('/delete_materi/{id}', [MateriController::class, 'deletemateri'])->name('materi-delete');
+
+    Route::get('/tambah-kategori', [MateriController::class, 'tambahkategori'])->name('tambahkategori');
+    Route::post('/kategori-insert', [MateriController::class, 'insertkategori'])->name('kategori-insert');
+    Route::get('/edit-kategori/{id}', [MateriController::class, 'editkategori'])->name('editkategori');
+    Route::put('/kategori-update/{id}', [MateriController::class, 'updatekategori'])->name('kategori-update');
+    Route::delete('/delete_kategori/{id}', [MateriController::class, 'deletekategori'])->name('kategori-delete');
+
+    Route::get('/data-logaktivitas', [LogaktivitasController::class, 'logaktivitas'])->name('data-logaktivitas');
 });
 
 Route::middleware('auth:member')->group(function () {
     Route::get('/materi-member', [MemberController::class, 'member'])->name('materi-member');
+    Route::get('/pilih-materi/{id}', [MemberController::class, 'pilihmateri'])->name('pilihmateri');
+    Route::post('/proses-pilihmateri', [MemberController::class, 'prosespilihmateri'])->name('prosespilihmateri');
 });
 
 Route::middleware('auth:coach')->group(function () {
