@@ -158,6 +158,7 @@
                                                     <th>Kategori </th>
                                                     <th>Nama Coach</th>
                                                     <th>Nama Materi</th>
+                                                    <th>Foto</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -172,43 +173,49 @@
                                                     <td>{{ $item->kategori->nama}}</td>
                                                     <td>{{ $item->coach->nama }}</td>
                                                     <td>{{ $item->nama }}</td>
-                                                    <td class="d-flex align-items-center">
-                                                        <a href="{{ route('lihatmateri', ['id' => $item->id]) }}" class="btn btn-warning" style="margin-right: 5px;">
+                                                    <td>
+                                                        @if($item->images && $item->images->count())
+                                                        <img class="featured-img img-fluid rounded" src="{{ asset('storage/' . $item->images->src) }}" alt="{{ $item->nama }}" style="width: 100px; height: 100px;">
+                                                        @else
+                                                        <img class="featured-img img-fluid rounded" src="{{ asset('assets/img/materikosong.jpg') }}" alt="{{ $item->nama }}" style="width: 100px; height: 100px;">
+                                                        @endif
+                                                    </td>
+                                                    <td class="align-items-center">
+                                                        <div class="btn-group" role="group">
+                                                            <a href="{{ route('lihatmateri', ['id' => $item->id]) }}" class="btn btn-warning me-2">
                                                                 <i class="bi bi-eye"></i> Lihat
-                                                        </a>
-                                                        <a href="{{ route('editmateri', ['id' => $item->id]) }}" class="btn btn-primary" style="margin-right: 5px;">
-                                                            <i class="bi bi-pencil"></i> Ubah
-                                                        </a>
-    
-                                                        <form action="{{ route('materi-delete', $item->id) }}" method="POST">
-                                                            <button type="button" class="btn btn-danger" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#hapusModal-{{ $item->id }}">
-                                                                <i class="bi bi-trash"></i> Hapus
-                                                            </button>
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="hapusModal-{{ $item->id }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="hapusModalLabel">Hapus Coach</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <!-- Isi konten modal di sini -->
-                                                                            Yakin Ingin hapus Materi {{ $item->nama }} Dengan ID: C-{{ \Carbon\Carbon::parse($item->created_at)->format('Ym') }}{{ $item->id }}
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <form action="{{ route('materi-delete', $item->id) }}" method="POST">
-                                                                                @csrf
-                                                                                @method('DELETE')
+                                                            </a>
+                                                            <a href="{{ route('editmateri', ['id' => $item->id]) }}" class="btn btn-primary me-2">
+                                                                <i class="bi bi-pencil"></i> Ubah
+                                                            </a>
+                                                            <form action="{{ route('materi-delete', $item->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#hapusModal-{{ $item->id }}">
+                                                                    <i class="bi bi-trash"></i> Hapus
+                                                                </button>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="hapusModal-{{ $item->id }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="hapusModalLabel">Hapus Coach</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <!-- Isi konten modal di sini -->
+                                                                                Yakin Ingin hapus Materi {{ $item->nama }} Dengan ID: C-{{ \Carbon\Carbon::parse($item->created_at)->format('Ym') }}{{ $item->id }}
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                                 <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                            </form>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </td>
+                                                            </form>
+                                                        </div>
+                                                    </td>                                                       
                                                 </tr>
                                                 @php
                                                 $startNumber++;

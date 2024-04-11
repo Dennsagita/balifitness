@@ -73,6 +73,10 @@ Route::middleware('auth:member')->group(function () {
     Route::get('/materi-member', [MemberController::class, 'member'])->name('materi-member');
     Route::get('/pilih-materi/{id}', [MemberController::class, 'pilihmateri'])->name('pilihmateri');
     Route::post('/proses-pilihmateri', [MemberController::class, 'prosespilihmateri'])->name('prosespilihmateri');
+    Route::get('/member-logaktivitas', [MemberController::class, 'logaktivitasmember'])->name('member-logaktivitas');
+    Route::get('/lihat-materi/{logaktivitasid}', [MemberController::class, 'lihatmaterimember'])->name('lihatmaterimember');
+    Route::get('/profil-member', [MemberController::class, 'profilmember'])->name('profilmember');
+    Route::put('/profile-editmember', [MemberController::class, 'updatemember'])->name('updatemember');
 });
 
 Route::middleware('auth:coach')->group(function () {

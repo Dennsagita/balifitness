@@ -65,14 +65,16 @@
                                 <label for="link_video">Link Video</label>
                                 <input type="text" id="link_video" name="link_video" class="form-control">
                             </div>
-
+                            <div class="form-group">
+                              <label for="images[]">Uploud Foto</label>
+                              <input class="form-control" type="file" name="images[]" multiple data-max_length="20">
+                            </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="tinymce-editor" style="color: white;" id="deskripsi" name="deskripsi">
                                 <p>Deskripsi</p>
                               </textarea>
                             </div>
-
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>

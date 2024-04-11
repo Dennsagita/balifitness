@@ -47,15 +47,17 @@
       @elseif (Str::length(Auth::guard('member')->user()) > 0)
       <!-- Materi Member -->
       <li class="nav-item">
-        <a class="nav-link collapsed {{ request()->segment(1) == 'datamateri' ? 'bg-primary text-white' : '' }}" href="{{ route('datamateri') }}">
-          <i class="bi bi-envelope {{ request()->segment(1) == 'datamateri' ? ' text-white' : '' }}"></i>
+        <a class="nav-link collapsed {{ request()->segment(1) == 'materi-member' ? 'bg-primary text-white' : '' }}" href="{{ route('materi-member') }}">
+          <i class="bi bi-envelope {{ request()->segment(1) == 'materi-member' ? ' text-white' : '' }}"></i>
           <span>MATERI</span>
         </a>
       </li><!-- End MATERI Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
+        <a class="nav-link collapsed {{ request()->segment(1) == 'member-logaktivitas' ? 'bg-primary text-white' : '' }}
+          {{ request()->segment(1) == 'lihat-materi' ? 'bg-primary text-white' : '' }}" href="{{ route('member-logaktivitas') }}">
+          <i class="bi bi-card-list {{ request()->segment(1) == 'member-logaktivitas' ? ' text-white' : '' }}
+            {{ request()->segment(1) == 'lihat-materi' ? ' text-white' : '' }}"></i>
           <span>LOG AKTIVITAS</span>
         </a>
       </li><!-- End LOG AKTIVITAS Page Nav -->

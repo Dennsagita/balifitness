@@ -65,7 +65,35 @@
                                 <label for="link_video">Link Video</label>
                                 <input type="text" id="link_video" name="link_video" value="{{ $materi->link_video }}" class="form-control">
                             </div>
-
+                            <div class="form-group">
+                              <label for="inputNumber" class="col-sm-2 col-form-label">Upload Foto</label>
+                                <div class="col-sm-10">
+                                    <div class="upload__box">
+                                        @error('images[]')
+                                            <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                                        @enderror
+                                        <div class="upload__btn-box">
+                                            <label class="upload__btn btn btn">
+                                                {{-- <p>Choose An Image</p> --}}
+                                                <input type="file" name="image" accept="image/*" multiple data-max_length="20" class="form-control">
+                                            </label>
+                                        </div>
+                                        <div class="upload__img-wrap">
+                                            @if($materi->images)
+                                                @if ($materi->images instanceof App\Models\Image)
+                                                    <div class='upload__img-box'>
+                                                        <div style='background-image: url({{ asset('storage/' . $materi->images->src) }})' data-number='{{ $materi }}' data-id="{{ $materi->images->id }}" data-file='{{ 'storage/' . $materi->images->src }}' class='img-bg'>
+                                                            <div class='upload__img-close'></div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        </div>                        
+                                    </div>
+                                </div>
+                              {{-- <label for="images[]">Uploud Foto</label>
+                              <input class="form-control" type="file" name="images[]" multiple data-max_length="20"> --}}
+                            </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea class="tinymce-editor" style="color: white;" id="deskripsi" name="deskripsi" required>

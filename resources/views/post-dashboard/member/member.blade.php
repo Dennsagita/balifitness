@@ -48,6 +48,9 @@
                                         <th>Id Member</th>
                                         <th>Nama </th>
                                         <th>email</th>
+                                        <th>Nomot Telphone</th>
+                                        <th>Alamat</th>
+                                        <th>Foto</th>
                                         <th>Tanggal Registrasi</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -62,8 +65,17 @@
                                         <td>M-{{ \Carbon\Carbon::parse($item->created_at)->format('Ym') }}{{ $item->id }}</td>
                                         <td>{{ $item->nama}}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>{{ $item->no_telp }}</td>
+                                        <td>{{ $item->alamat }}</td>
+                                        <td>
+                                            @if($item->images && $item->images->count())
+                                            <img class="featured-img img-fluid rounded" src="{{ asset('storage/' . $item->images->src) }}" alt="{{ $item->nama }}" style="width: 100px; height: 100px;">
+                                            @else
+                                            <img class="featured-img img-fluid rounded" src="{{ asset('assets/img/profilekosong.jpg') }}" alt="{{ $item->nama }}" style="width: 100px; height: 100px;">
+                                            @endif
+                                        </td>
                                         <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
-                                        <td class="d-flex align-items-center mt-4">
+                                        <td class="align-items-center">
                                             <form action="{{ route('member.delete', $item->id) }}" method="POST">
                                                 <button type="button" class="btn btn-danger" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#hapusModal-{{ $item->id }}">
                                                     <i class="bi bi-trash"></i> Hapus

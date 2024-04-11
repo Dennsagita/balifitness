@@ -1,5 +1,6 @@
 @extends('layouts.app-dashboard')
 @section('title', 'Dashboard Member')
+@section('foto', 'agus')
 
 @section('content')
 <main id="main" class="main">
@@ -39,7 +40,11 @@
             <div class="col-md-4">
                 <a href="{{ route('pilihmateri', $materi->id) }}">
                     <div class="card" data-kategori="{{ $materi->kategori->id }}">
-                        <img src="assets/img/card.jpg" class="card-img-top" alt="...">
+                        @if($materi->images && $materi->images->count())
+                        <img src="{{ asset('storage/' . $materi->images->src) }}" class="card-img-top" alt="{{ $materi->nama }}">
+                        @else
+                        <img src="{{ asset('assets/img/materikosong.jpg') }}" class="card-img-top" alt="{{ $materi->nama }}">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $materi->nama }}</h5>
                             <h8 class="card-title">KATEGORI {{ $materi->kategori->nama }}</h8>

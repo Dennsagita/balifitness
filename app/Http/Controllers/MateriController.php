@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coach;
-use App\Models\Kategori;
+use App\Models\Image;
 use App\Models\Materi;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MateriController extends Controller
 {
@@ -108,6 +110,31 @@ class MateriController extends Controller
         $materi->link_video = $request->link_video;
         $materi->save();
 
+        // Cek apakah ada gambar yang diunggah dalam request
+        if ($request->hasFile('image')) {
+            // Hapus gambar-gambar yang terkait dengan Dbsarana ini
+            if ($materi->images instanceof Image) {
+                // Hapus gambar dari penyimpanan
+                Storage::delete($materi->images->src);
+                // Hapus record gambar dari database
+                $materi->images->delete();
+            }
+
+
+
+            // Upload dan simpan gambar baru
+            $imagePath = $request->file('image')->store('images', 'public');
+            $image = Image::create([
+                'path' => $imagePath,
+                'src' => $imagePath, // Sesuaikan nilai 'src' sesuai dengan 'path'
+                'thumb' => $imagePath,
+                'alt' => $imagePath,
+                'imageable_id' => $materi->id, // Berikan nilai 'imageable_id'
+                'imageable_type' => 'App\Models\Materi', // Sesuaikan dengan tipe model yang berelasi
+            ]);
+            // Asosiasikan gambar dengan entitas menggunakan relasi polimorfik
+            $materi->images()->save($image);
+        }
         // Redirect kembali ke halaman dengan pesan sukses
         return redirect()->route('datamateri')->with('editmateri', 'Materi berhasil diubah.');
     }
