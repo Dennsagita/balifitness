@@ -23,14 +23,16 @@
 </head>
 
 <body class="bg-gradient-primary">
-
     <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center mt-5">
 
             <div class="col-xl-10 col-lg-12 col-md-9 mt-5">
-
+                <div >
+                    <h4><a class="text-white" href="{{ route('beranda') }}"><i class="fas fa-arrow-left"></i>   Kembali ke Beranda</a></h4>
+                </div>
+                
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->

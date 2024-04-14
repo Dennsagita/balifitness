@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\LogaktivitasController;
 
 /*
@@ -28,8 +29,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Auth::routes();
 Route::middleware('guest')->group(function () {
     //Roots Login dan Logout
-    Route::get('/', [AuthController::class, 'index'])->name('login'); //fungsi name = mengubah nama route 
-    Route::post('login', [AuthController::class, 'proseslogin'])->name('proseslogin');
+    Route::get('/', [LandingpageController::class, 'index'])->name('beranda'); //fungsi name = mengubah nama route 
+    Route::get('/login', [AuthController::class, 'index'])->name('login'); //fungsi name = mengubah nama route 
+    Route::post('proseslogin', [AuthController::class, 'proseslogin'])->name('proseslogin');
     Route::get('/resetpassword', [AuthController::class, 'resetpassword'])->name('resetpassword');
     Route::get('/registerasi', [AuthController::class, 'registrasi'])->name('registrasi');
     Route::post('/proses-registrasi', [AuthController::class, 'prosesregistrasi'])->name('prosesregistrasi');
