@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
     //  */
     public function index()
     {
-        return view('post-dashboard.dashboard');
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
+        return view('post-dashboard.dashboard', compact('admin'));
     }
 }

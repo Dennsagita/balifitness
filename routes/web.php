@@ -5,6 +5,7 @@ use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MemberController;
@@ -30,6 +31,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('guest')->group(function () {
     //Roots Login dan Logout
     Route::get('/', [LandingpageController::class, 'index'])->name('beranda'); //fungsi name = mengubah nama route 
+    Route::get('/detailkategori', [LandingpageController::class, 'detailkategori'])->name('detailkategori'); //fungsi name = mengubah nama route 
     Route::get('/login', [AuthController::class, 'index'])->name('login'); //fungsi name = mengubah nama route 
     Route::post('proseslogin', [AuthController::class, 'proseslogin'])->name('proseslogin');
     Route::get('/resetpassword', [AuthController::class, 'resetpassword'])->name('resetpassword');
@@ -69,6 +71,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/delete_kategori/{id}', [MateriController::class, 'deletekategori'])->name('kategori-delete');
 
     Route::get('/data-logaktivitas', [LogaktivitasController::class, 'logaktivitas'])->name('data-logaktivitas');
+    Route::get('/profil-admin', [AdminController::class, 'profiladmin'])->name('profiladmin');
+    Route::put('/profile-editadmin', [AdminController::class, 'updateadmin'])->name('updateadmin');
+    Route::post('/ubah-password-admin', [AuthController::class, 'ubahpassword'])->name('ubahpasswordadmin');
 });
 
 Route::middleware('auth:member')->group(function () {
@@ -79,6 +84,7 @@ Route::middleware('auth:member')->group(function () {
     Route::get('/lihat-materi/{logaktivitasid}', [MemberController::class, 'lihatmaterimember'])->name('lihatmaterimember');
     Route::get('/profil-member', [MemberController::class, 'profilmember'])->name('profilmember');
     Route::put('/profile-editmember', [MemberController::class, 'updatemember'])->name('updatemember');
+    Route::post('/ubah-password-member', [AuthController::class, 'ubahpassword'])->name('ubahpasswordmember');
 });
 
 Route::middleware('auth:coach')->group(function () {

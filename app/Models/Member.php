@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use App\Models\Logaktivitas;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Member extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
 
     protected $table = "members";
     protected $primaryKey = "id";

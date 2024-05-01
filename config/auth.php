@@ -111,9 +111,21 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'member' => [
             'provider' => 'users',
-            'table' => 'password_reset_tokens',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admin' => [
+            'provider' => 'admins',
+            'table' => 'password_reset_admins',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'coach' => [
+            'provider' => 'users',
+            'table' => 'password_reset_coaches',
             'expire' => 60,
             'throttle' => 60,
         ],

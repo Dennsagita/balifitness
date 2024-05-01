@@ -15,4 +15,12 @@ class LandingpageController extends Controller
         $materi = Materi::with('kategori', 'coach')->get();
         return view('post-landingpage.beranda', compact('materi', 'kategori'));
     }
+
+    public function detailkategori()
+    {
+        $kategori = Kategori::all();
+        // Mengambil semua data materi dari database beserta relasi Kategori dan Coach
+        $materi = Materi::with('kategori', 'coach')->get();
+        return view('post-landingpage.detail-kategori', compact('materi', 'kategori'));
+    }
 }

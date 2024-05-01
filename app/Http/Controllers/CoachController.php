@@ -4,20 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Coach;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CoachController extends Controller
 {
     public function index()
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         $coaches = Coach::all();
-        return view('post-dashboard.coach.coach', compact('coaches'));
+        return view('post-dashboard.coach.coach', compact('coaches', 'admin'));
     }
 
     public function create()
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         // Mendapatkan nomor urut berikutnya
-        return view('post-dashboard.coach.tambah_coach');
+        return view('post-dashboard.coach.tambah_coach', compact('admin'));
     }
 
     public function store(Request $request)

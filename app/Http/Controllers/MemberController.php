@@ -15,8 +15,10 @@ class MemberController extends Controller
 {
     public function index()
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         $member = Member::all();
-        return view('post-dashboard.member.member', compact('member'));
+        return view('post-dashboard.member.member', compact('member', 'admin'));
     }
 
     //hapus member

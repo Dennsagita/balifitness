@@ -40,7 +40,7 @@
                                 </div>
                             @endforeach
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
                             </div>
                             <form class="user" action="{{route('prosesregistrasi')}}" method="post">
                                 {{ csrf_field() }}
@@ -71,14 +71,11 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Register Account
+                                    Registrasi Akun
                                 </button>
                                 <hr>
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
                             <div class="text-center">
                                 <a class="small" href="{{route('login')}}">Sudah Punya AKun? Login!</a>
                             </div>

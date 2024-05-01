@@ -30,7 +30,7 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9 mt-5">
                 <div >
-                    <h4><a class="text-white" href="{{ route('beranda') }}"><i class="fas fa-arrow-left"></i>   Kembali ke Beranda</a></h4>
+                    <h4><a class="text-white" href="{{ route('login') }}"><i class="fas fa-arrow-left"></i>   Kembali ke Login</a></h4>
                 </div>
                 
                 <div class="card o-hidden border-0 shadow-lg my-5">
@@ -42,6 +42,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">BALI FITNESS SEMINYAK</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Reset Password</h1>
                                     </div>
                                     <!-- session flass saat halaman error -->
                                     @foreach ($errors->all() as $error)
@@ -53,48 +54,22 @@
                                     <div class="alert alert-danger" role="alert">
                                         {{ $errors->first('gagal-login') }}
                                     </div> --}}
-                                    @if (Session::has('logout'))
+                                    @if (Session::has('reset'))
                                     <div class="alert alert-success" role="alert">
-                                        {{ Session::get('logout') }}
-                                    </div>
-                                    @elseif (Session::has('registrasi'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('registrasi') }}
-                                    </div>
-                                    @elseif (Session::has('ubahPassword'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('ubahPassword') }}
-                                    </div>
-                                    @elseif (Session::has('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('status') }}
+                                        {{ Session::get('reset') }}
                                     </div>
                                     @endif
-                                    <form class="user" action="{{route('proseslogin')}}" method="post">
+                                    <form class="user" action="{{ route('processlupaPassword') }}" method="post">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
                                                 placeholder="Masukan Email Anda">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Masukan Password">
-                                        </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            Submit
                                         </button>
                                     </form>
-                                    <hr>
-                                    <div class="text-center mb-2">
-                                        <a class="small" href="{{route('lupaPassword')}}">Lupa Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a >Tidak Mempunyai Akun?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="{{route('registrasi')}}">Registrasi Sekarang!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

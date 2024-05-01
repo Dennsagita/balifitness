@@ -29,10 +29,6 @@
         <div class="row justify-content-center mt-5">
 
             <div class="col-xl-10 col-lg-12 col-md-9 mt-5">
-                <div >
-                    <h4><a class="text-white" href="{{ route('beranda') }}"><i class="fas fa-arrow-left"></i>   Kembali ke Beranda</a></h4>
-                </div>
-                
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -42,6 +38,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">BALI FITNESS SEMINYAK</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Reset Password</h1>
                                     </div>
                                     <!-- session flass saat halaman error -->
                                     @foreach ($errors->all() as $error)
@@ -53,48 +50,29 @@
                                     <div class="alert alert-danger" role="alert">
                                         {{ $errors->first('gagal-login') }}
                                     </div> --}}
-                                    @if (Session::has('logout'))
+                                    @if (Session::has('reset'))
                                     <div class="alert alert-success" role="alert">
-                                        {{ Session::get('logout') }}
-                                    </div>
-                                    @elseif (Session::has('registrasi'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('registrasi') }}
-                                    </div>
-                                    @elseif (Session::has('ubahPassword'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('ubahPassword') }}
-                                    </div>
-                                    @elseif (Session::has('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('status') }}
+                                        {{ Session::get('reset') }}
                                     </div>
                                     @endif
-                                    <form class="user" action="{{route('proseslogin')}}" method="post">
+                                    <form class="user" action="{{ route('processResetPassword') }}" method="post">
                                         {{ csrf_field() }}
+                                        <input type="hidden" name="token" value="{{ request()->token }}">
+                                        <input type="hidden" name="email" value="{{ request()->email }}">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="email" name="email" aria-describedby="emailHelp"
-                                                placeholder="Masukan Email Anda">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="password" name="password" aria-describedby="passwordHelp"
+                                                placeholder="Masukan Password Baru">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Masukan Password">
+                                                id="password_confirmation" name="password_confirmation" aria-describedby="passwordlHelp"
+                                                placeholder="Konfirmasi Password Baru">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            Submit
                                         </button>
                                     </form>
-                                    <hr>
-                                    <div class="text-center mb-2">
-                                        <a class="small" href="{{route('lupaPassword')}}">Lupa Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a >Tidak Mempunyai Akun?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="{{route('registrasi')}}">Registrasi Sekarang!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

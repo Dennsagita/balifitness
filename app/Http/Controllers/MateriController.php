@@ -7,35 +7,42 @@ use App\Models\Image;
 use App\Models\Materi;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MateriController extends Controller
 {
     public function materi()
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         //mengambil data dari tabel kategori
         $kategori = Kategori::all();
         // Mengambil semua data materi dari database beserta relasi Kategori dan Coach
         $materi = Materi::with('kategori', 'coach')->get();
 
-        return view('post-dashboard.materi.materi', compact('materi', 'kategori'));
+        return view('post-dashboard.materi.materi', compact('materi', 'kategori', 'admin'));
     }
 
     public function lihat($id)
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         // Mengambil data materi berdasarkan ID
         $materi = Materi::findOrFail($id);
 
         // Mengirim data materi ke view 'materi.show' untuk ditampilkan
-        return view('post-dashboard.materi.lihat_materi', compact('materi'));
+        return view('post-dashboard.materi.lihat_materi', compact('materi', 'admin'));
     }
 
     public function create()
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         // Mendapatkan nomor urut berikutnya
         $kategori = Kategori::all();
         $coach = Coach::all();
-        return view('post-dashboard.materi.tambah_materi', compact('kategori', 'coach'));
+        return view('post-dashboard.materi.tambah_materi', compact('kategori', 'coach', 'admin'));
     }
 
     //tambah data
@@ -64,6 +71,8 @@ class MateriController extends Controller
 
     public function editmateri($id)
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         // Temukan materi berdasarkan ID
         $materi = Materi::find($id);
         $kategori = Kategori::all();
@@ -74,7 +83,7 @@ class MateriController extends Controller
         }
 
         // Tampilkan view form edit materi dengan data materi yang ditemukan
-        return view('post-dashboard.materi.ubah_materi', compact('materi', 'kategori', 'coach'));
+        return view('post-dashboard.materi.ubah_materi', compact('materi', 'kategori', 'coach', 'admin'));
     }
 
     public function updatemateri(Request $request, $id)
@@ -158,7 +167,9 @@ class MateriController extends Controller
 
     public function tambahkategori()
     {
-        return view('post-dashboard.materi.kategori.tambah_kategori');
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
+        return view('post-dashboard.materi.kategori.tambah_kategori', compact('admin'));
     }
 
     //tambah data Kategori
@@ -181,6 +192,8 @@ class MateriController extends Controller
 
     public function editkategori($id)
     {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
         // Temukan kategori berdasarkan ID
         $kategori = Kategori::find($id);
 
@@ -190,7 +203,7 @@ class MateriController extends Controller
         }
 
         // Tampilkan view form edit kategori dengan data kategori yang ditemukan
-        return view('post-dashboard.materi.kategori.ubah_kategori', compact('kategori'));
+        return view('post-dashboard.materi.kategori.ubah_kategori', compact('kategori', 'admin'));
     }
 
     public function updatekategori(Request $request, $id)

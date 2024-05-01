@@ -1,5 +1,5 @@
 @extends('layouts.app-dashboard')
-@section('title', 'Profil Member')
+@section('title', 'Profil Admin')
 
 @section('content')
 
@@ -42,15 +42,14 @@
         </div>
         @endif
         <div class="col-xl-4">
-
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                @if($member->images && $member->images->count())
-                    <img src="{{ asset('storage/' . $member->images->src) }}" class="rounded-circle" alt="{{ $member->nama }}">
+                @if($admin->images && $admin->images->count())
+                    <img src="{{ asset('storage/' . $admin->images->src) }}" class="rounded-circle" alt="{{ $admin->nama }}">
                 @else
-                    <img src="{{ asset('assets/img/profilekosong.jpg') }}" class="rounded-circle" alt="{{ $member->nama }}">
+                    <img src="{{ asset('assets/img/profilekosong.jpg') }}" class="rounded-circle" alt="{{ $admin->nama }}">
                 @endif
-                @if (Str::length(Auth::guard('member')->user()) > 0)
+                @if (Str::length(Auth::guard('admin')->user()) > 0)
                 <h2>{{ Auth::user()->nama}}</h2>
                 <h3>{{ Auth::user()->email}}</h3>
                 @endif
@@ -82,7 +81,7 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                    @if (Str::length(Auth::guard('member')->user()) > 0)
+                    @if (Str::length(Auth::guard('admin')->user()) > 0)
                     <h5 class="card-title">Profile Details</h5>
                     {{-- @elseif (Str::length(Auth::guard('web')->user()) > 0) --}}
                     <div class="row">
@@ -109,16 +108,16 @@
                   <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
     
                     <!-- Profile Edit Form -->
-                    <form action="{{ route('updatemember') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('updateadmin') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                     <div class="col-md-8 col-lg-9">
-                        @if($member->images && $member->images->count())
-                            <img src="{{ asset('storage/' . $member->images->src) }}" alt="{{ $member->nama }}">
+                        @if($admin->images && $admin->images->count())
+                            <img src="{{ asset('storage/' . $admin->images->src) }}" alt="{{ $admin->nama }}">
                         @else
-                            <img src="{{ asset('assets/img/profilekosong.jpg') }}" alt="{{ $member->nama }}">
+                            <img src="{{ asset('assets/img/profilekosong.jpg') }}" alt="{{ $admin->nama }}">
                         @endif
                         <div class="pt-2">
                             <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
@@ -164,7 +163,7 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form action="{{ route('ubahpasswordmember') }}" method="post">
+                  <form action="{{ route('ubahpasswordadmin') }}" method="post">
                     @csrf
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>

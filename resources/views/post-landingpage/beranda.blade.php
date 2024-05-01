@@ -13,7 +13,7 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/slide-1.jpg') }})">
+        <div class="carousel-item active" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/foto2.jpg') }})">
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Sailor</span></h2>
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/slide-2.jpg') }})">
+        <div class="carousel-item" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/foto1.jpg') }})">
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/slide-3.jpg') }})">
+        <div class="carousel-item" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/foto3.jpg') }})">
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
@@ -183,12 +183,7 @@
 
         <div class="row">
           <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
+            <h1>Kategori Training</h1>
           </div>
         </div>
 
@@ -211,11 +206,10 @@
                             <p>Pelatih : {{ $materi->coach->nama }}</p>
                             <div class="portfolio-links">
                                 @if($materi->images && $materi->images->count())
-                                    <a href="{{ asset('storage/' . $materi->images->src) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ $materi->deskripsi }}"><i class="bx bx-plus"></i></a>
+                                    <a href="{{ asset('storage/' . $materi->images->src) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ $materi->nama }}"><i class="bx bx-plus"></i></a>
                                 @else
-                                    <a href="{{ asset('assets/img/materikosong.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ $materi->deskripsi }}"><i class="bx bx-plus"></i></a>
+                                    <a href="{{ asset('assets/img/materikosong.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ $materi->nama }}"><i class="bx bx-plus"></i></a>
                                 @endif
-                                <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
                     </div>
