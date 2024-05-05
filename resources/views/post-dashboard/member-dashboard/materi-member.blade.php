@@ -19,19 +19,29 @@
                 </div>
             @endif
             <!-- Dropdown kategori -->
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Kategori
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#" data-kategori="all">SEMUA KATEGORI</a></li>
-                @foreach($kategori as $kat)
-                  <li><a class="dropdown-item" href="#" data-kategori="{{ $kat->id }}">{{ $kat->nama }}</a></li>
-                @endforeach
-              </ul>
+            <div class="col-md-6 mb-3">
+                <form action="{{ route('materi-member') }}" method="GET">
+                    <div class="input-group">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Kategori
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('materi-member') }}">SEMUA KATEGORI</a></li>
+                            @foreach($kategori as $kat)
+                                <li><a class="dropdown-item" href="{{ route('materi-member', ['kategori' => $kat->id]) }}">{{ $kat->nama }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </form>
             </div>
-          
-            <!-- End Dropdown kategori -->
+            <div class="col-md-6 mb-3">
+                <form action="{{ route('materi-member') }}" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cari berdasarkan nama atau kategori" aria-label="Cari berdasarkan nama atau kategori" id="searchInput" name="keyword">
+                        <button class="btn btn-outline-secondary" type="submit" id="searchButton">Cari</button>
+                    </div>
+                </form>
+            </div>            
         </nav>
     </div><!-- End Page Title -->
     <div class="card-container">
@@ -56,36 +66,7 @@
             @endforeach
         </div>
     </div>
-<!-- JavaScript untuk menangani tindakan ketika item dropdown dipilih -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Ambil semua item dropdown
-      var dropdownItems = document.querySelectorAll('.dropdown-item');
 
-      // Tambahkan event listener untuk setiap item dropdown
-      dropdownItems.forEach(function(item) {
-          item.addEventListener('click', function() {
-              // Ambil nilai data-kategori dari item dropdown yang dipilih
-              var selectedCategory = item.dataset.kategori;
-
-              // Saring materi berdasarkan kategori yang dipilih
-              var cards = document.querySelectorAll('.card');
-              cards.forEach(function(card) {
-                  var cardCategory = card.dataset.kategori;
-                  if (selectedCategory === 'all' || selectedCategory === cardCategory) {
-                      card.style.display = 'block';
-                      // Pindahkan card yang dipilih ke posisi paling depan
-                      if (selectedCategory === cardCategory) {
-                          card.parentNode.prepend(card); // Pindahkan card ke depan
-                      }
-                  } else {
-                      card.style.display = 'none';
-                  }
-              });
-          });
-      });
-  });
-</script>
 
 </main><!-- End #main -->
 @endsection

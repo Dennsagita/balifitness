@@ -31,7 +31,11 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('guest')->group(function () {
     //Roots Login dan Logout
     Route::get('/', [LandingpageController::class, 'index'])->name('beranda'); //fungsi name = mengubah nama route 
-    Route::get('/detailkategori', [LandingpageController::class, 'detailkategori'])->name('detailkategori'); //fungsi name = mengubah nama route 
+    Route::get('/tentangkami', [LandingpageController::class, 'tentangkami'])->name('tentangkami'); //fungsi name = mengubah nama route 
+    Route::get('/kategoritraining', [LandingpageController::class, 'kategoritraining'])->name('kategoritraining'); //fungsi name = mengubah nama route 
+    Route::get('/detailkategori/{id}', [LandingpageController::class, 'detailkategori'])->name('detailkategori'); //fungsi name = mengubah nama route 
+    Route::get('/kontak', [LandingpageController::class, 'kontak'])->name('kontak');
+    Route::post('/kontakemail', [LandingpageController::class, 'kirimEmail'])->name('kirimemail');
     Route::get('/login', [AuthController::class, 'index'])->name('login'); //fungsi name = mengubah nama route 
     Route::post('proseslogin', [AuthController::class, 'proseslogin'])->name('proseslogin');
     Route::get('/resetpassword', [AuthController::class, 'resetpassword'])->name('resetpassword');

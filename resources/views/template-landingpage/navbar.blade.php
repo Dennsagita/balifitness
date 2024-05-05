@@ -8,27 +8,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="{{ route('beranda') }}" class="active">Beranda</a></li>
-          {{-- <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
-
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li> --}}
-          <li><a href="#">Tentang Kami</a></li>
-          <li><a href="#">Kategori Training</a></li>
-          <li><a href="#">Kontak</a></li>
+          <li><a href="{{ route('beranda') }}" class="{{ request()->routeIs('beranda') ? 'active' : '' }}">Beranda</a></li>
+          <li><a class="{{ request()->routeIs('tentangkami') ? 'active' : '' }}" href="{{ route('tentangkami') }}">Tentang Kami</a></li>
+          <li><a class="{{ request()->routeIs('kategoritraining') ? 'active' : '' }}" href="{{ route('kategoritraining') }}">Kategori Training</a></li>
+          <li><a class="{{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a></li>
           <li><a href="{{ route('login') }}" class="getstarted">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

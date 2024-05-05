@@ -36,16 +36,37 @@ class MemberController extends Controller
     }
 
     // Halaman Dashboard Untuk Akun Member
-    public function member()
+    public function member(Request $request)
     {
-        // Mengambil data member yang sedang login
         $member = Auth::guard('member')->user();
-        //mengambil data dari tabel kategori
         $kategori = Kategori::all();
-        // Mengambil semua data materi dari database beserta relasi Kategori dan Coach
-        $materi = Materi::with('kategori', 'coach')->get();
+
+        $query = Materi::with('kategori', 'coach');
+
+        // Filter berdasarkan kategori jika dipilih
+        $selected_kategori = $request->input('kategori');
+        if ($selected_kategori && $selected_kategori != 'all') {
+            $query->whereHas('kategori', function ($q) use ($selected_kategori) {
+                $q->where('id', $selected_kategori);
+            });
+        }
+
+        // Filter berdasarkan kata kunci pencarian
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('nama', 'like', '%' . $keyword . '%')
+                    ->orWhereHas('kategori', function ($q) use ($keyword) {
+                        $q->where('nama', 'like', '%' . $keyword . '%');
+                    });
+            });
+        }
+
+        $materi = $query->get();
+
         return view('post-dashboard.member-dashboard.materi-member', compact('materi', 'kategori', 'member'));
     }
+
 
     public function pilihmateri($id)
     {
