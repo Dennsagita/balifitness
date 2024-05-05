@@ -61,6 +61,14 @@
           <span>LOG AKTIVITAS</span>
         </a>
       </li><!-- End LOG AKTIVITAS Page Nav -->
+      @elseif (Str::length(Auth::guard('coach')->user()) > 0)
+      <!-- Materi Member -->
+      <li class="nav-item">
+        <a class="nav-link collapsed {{ request()->routeIs('materi-coach') ? 'bg-primary text-white' : '' }}" href="{{ route('materi-coach') }}">
+          <i class="bi bi-envelope {{ request()->routeIs('materi-coach') ? ' text-white' : '' }}"></i>
+          <span>LOG AKTIVITAS</span>
+        </a>
+      </li><!-- End MATERI Page Nav -->
       @endif
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('logout') }}">

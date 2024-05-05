@@ -57,10 +57,16 @@
         </div>
 
         <div class="row">
-            @foreach($coach as $item)  
+        @foreach($coach as $item)  
         <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+              <div class="pic">
+                @if($item->images && $item->images->count())
+                  <img src="{{ asset('storage/' . $item->images->src) }}" class="img-fluid" alt="{{ $item->nama }}">
+                @else
+                  <img src="{{ asset('assets/landingpage/assets/img/profilekosong.jpg') }}" class="img-fluid" alt="{{ $item->nama }}">
+                @endif
+              </div>
               <div class="member-info">
                 <h4>{{ $item->nama }}</h4>
                 <span>{{ $item->email }}</span>
