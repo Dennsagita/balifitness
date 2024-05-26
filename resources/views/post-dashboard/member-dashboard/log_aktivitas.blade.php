@@ -21,12 +21,95 @@
                 @if(Session::has('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
                 <!-- End JS Validasi  -->
                 @if($logaktivitas->isEmpty())
                     <p>Tidak ada log aktivitas.</p>
                 @else
+                @if (!$member->berat_badan_awal && !$member->target_berat_badan)
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Tambah Data Berat Badan</h5>
+                          @if ($errors->any())
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                          @endif
+                        <!-- Vertical Form -->
+                        <form class="row g-3" action="{{ route('tambahberatbadan') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <label for="berat_badan_awal">Berat Badan</label>
+                                        <input type="text" id="berat_badan_awal" name="berat_badan_awal" placeholder="Masukan Berat Badan Saat Ini" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="target_berat_badan">Target Berat Badan</label>
+                                        <input type="text" id="target_berat_badan" name="target_berat_badan" placeholder="Masukan Target Berat Badan" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div> 
+                          </form><!-- Vertical Form --> 
+            
+                        </div>
+                      </div>
+                </div>
+                @else
+                <div class="row">
+                    @if ($errors->any())
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                    @endif
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h2>Data Berat Badan</h2>
+                            <!-- Tempatkan deskripsi materi di sini -->
+                            <p>Berat Badan Awal: {{ $member->berat_badan_awal }} KG</p>
+                            <p>Berat Badan Saat Ini: {{ $member->berat_badan_sekarang ?? '-' }} KG</p>
+                            <p>Selisih Berat Badan: {{ $member->berat_badan_awal ? ($member->berat_badan_sekarang ? $member->berat_badan_awal - $member->berat_badan_sekarang : '-') : '-' }} KG</p>
+                            <h4>Target Berat Badan: {{ $member->target_berat_badan }} KG</h4>
+                            <!-- Tambahkan informasi lainnya sesuai kebutuhan -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h2>Hitung Berat Badan</h2>
+                            <form action="{{ route('hitungberatbadan') }}" method="post" >
+                                @csrf
+                                @method('PUT')
+                                <div class="row gy-4">
+                                    <div class="">
+                                        <label for="berat_badan_sekarang">Berat Badan</label>
+                                        <input type="text" class="form-control" name="berat_badan_sekarang" id="berat_badan_sekarang" placeholder="Masukan Berat badan">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
+                                      </div> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="padding-bottom: 1rem;">Log Aktivitas</h5>

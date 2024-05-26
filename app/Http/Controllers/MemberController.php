@@ -85,7 +85,7 @@ class MemberController extends Controller
         $request->validate([
             'id_members' => 'required',
             'id_materi' => 'required',
-            'deskripsi' => 'required', // Validasi untuk password
+            'deskripsi' => 'required',
         ], [
             'id_members.required' => 'Member harus diisi.',
             'id_materi.required' => 'Materi harus diisi.',
@@ -124,6 +124,60 @@ class MemberController extends Controller
 
         // Mengirimkan data log aktivitas ke view
         return view('post-dashboard.member-dashboard.log_aktivitas', compact('logaktivitas', 'member'));
+    }
+
+    public function tambahberatbadan(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'berat_badan_awal' => 'required|numeric|min:0',
+            'target_berat_badan' => 'required|numeric|min:0',
+        ], [
+            'berat_badan_awal.required' => 'Kolom berat badan awal harus diisi.',
+            'berat_badan_awal.numeric' => 'Kolom berat badan awal harus berupa angka.',
+            'berat_badan_awal.min' => 'Berat badan awal tidak boleh kurang dari 0.',
+            'target_berat_badan.required' => 'Kolom target berat badan harus diisi.',
+            'target_berat_badan.numeric' => 'Kolom target berat badan harus berupa angka.',
+            'target_berat_badan.min' => 'Target berat badan tidak boleh kurang dari 0.',
+        ]);
+
+        // Ambil ID member dari user yang sedang login
+        $member = Member::find(Auth::id());
+
+        // Simpan berat badan awal dan target berat badan pada member
+        $member->berat_badan_awal = $request->berat_badan_awal;
+        $member->target_berat_badan = $request->target_berat_badan;
+        $member->save();
+
+        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Berat badan berhasil disimpan.');
+    }
+
+    public function hitungberatbadan(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'berat_badan_sekarang' => 'required|numeric|min:0|max:' . auth()->user()->berat_badan_awal,
+        ], [
+            'berat_badan_sekarang.required' => 'Kolom berat badan harus diisi.',
+            'berat_badan_sekarang.numeric' => 'Kolom berat badan harus berupa angka.',
+            'berat_badan_sekarang.min' => 'Berat badan tidak boleh kurang dari 0.',
+            'berat_badan_sekarang.max' => 'Berat badan tidak boleh melebihi berat badan awal (' . auth()->user()->berat_badan_awal . ' KG).',
+        ]);
+
+        // Ambil ID member dari user yang sedang login
+        $member = Member::find(Auth::id());
+
+        // Simpan berat badan saat ini pada member
+        $member->berat_badan_sekarang = $request->berat_badan_sekarang;
+        $member->save();
+
+        // Hitung selisih berat badan
+        $selisih_berat_badan = $member->berat_badan_awal - $member->berat_badan_sekarang;
+
+        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Berat badan berhasil disimpan.')
+            ->with('selisih_berat_badan', $selisih_berat_badan);
     }
 
     public function lihatmaterimember($logaktivitasid)

@@ -23,6 +23,9 @@ class Member extends Authenticatable
         'password',
         'alamat',
         'no_telp',
+        'berat_badan_awal',
+        'berat_badan_sekarang',
+        'target_berat_badan'
     ];
     public function logaktivitas()
     {

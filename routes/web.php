@@ -85,6 +85,8 @@ Route::middleware('auth:member')->group(function () {
     Route::get('/pilih-materi/{id}', [MemberController::class, 'pilihmateri'])->name('pilihmateri');
     Route::post('/proses-pilihmateri', [MemberController::class, 'prosespilihmateri'])->name('prosespilihmateri');
     Route::get('/member-logaktivitas', [MemberController::class, 'logaktivitasmember'])->name('member-logaktivitas');
+    Route::put('/tambahberatbadan', [MemberController::class, 'tambahberatbadan'])->name('tambahberatbadan');
+    Route::put('/hitungberatbadan', [MemberController::class, 'hitungberatbadan'])->name('hitungberatbadan');
     Route::get('/lihat-materi/{logaktivitasid}', [MemberController::class, 'lihatmaterimember'])->name('lihatmaterimember');
     Route::get('/profil-member', [MemberController::class, 'profilmember'])->name('profilmember');
     Route::put('/profile-editmember', [MemberController::class, 'updatemember'])->name('updatemember');
