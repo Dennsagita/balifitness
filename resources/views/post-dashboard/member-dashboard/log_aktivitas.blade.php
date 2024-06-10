@@ -91,7 +91,24 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card p-4">
-                            @if($member->berat_badan_sekarang <= $member->target_berat_badan)
+                           
+                            @if($member->berat_badan_sekarang == 0)
+                            <h2>Hitung Berat Badan</h2>
+                            <form action="{{ route('hitungberatbadan') }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <div class="row gy-4">
+                                    <div class="">
+                                        <label for="berat_badan_sekarang">Berat Badan</label>
+                                        <input type="text" class="form-control" name="berat_badan_sekarang" id="berat_badan_sekarang" placeholder="Masukan Berat badan">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                            @elseif($member->berat_badan_sekarang <= $member->target_berat_badan)
                             <h5>Selamat Target Berat Badan Terpenuhi</h5>
                             @else
                             <h2>Hitung Berat Badan</h2>
