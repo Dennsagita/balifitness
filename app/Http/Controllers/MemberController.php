@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\Materi;
 use App\Models\Member;
 use App\Models\Kategori;
+use App\Models\BeratBadan;
 use App\Models\Logaktivitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,8 +123,10 @@ class MemberController extends Controller
         // Mengambil log aktivitas yang terkait dengan ID anggota yang sedang login
         $logaktivitas = Logaktivitas::where('id_members', $memberId)->get();
 
+        // Ambil data berat badan untuk member yang sedang login
+        $beratbadan = BeratBadan::where('id_member', $memberId)->get();
         // Mengirimkan data log aktivitas ke view
-        return view('post-dashboard.member-dashboard.log_aktivitas', compact('logaktivitas', 'member'));
+        return view('post-dashboard.member-dashboard.log_aktivitas', compact('logaktivitas', 'member', 'beratbadan'));
     }
 
     public function tambahberatbadan(Request $request)
@@ -171,6 +174,12 @@ class MemberController extends Controller
         // Simpan berat badan saat ini pada member
         $member->berat_badan_sekarang = $request->berat_badan_sekarang;
         $member->save();
+
+        // Simpan berat badan ke tabel berat_badan
+        $beratBadan = BeratBadan::create([
+            'id_member' => $member->id, // Gunakan ID member yang sedang login
+            'berat_badan' => $request->berat_badan_sekarang,
+        ]);
 
         // Hitung selisih berat badan
         $selisih_berat_badan = $member->berat_badan_awal - $member->berat_badan_sekarang;

@@ -32,6 +32,11 @@ class Member extends Authenticatable
         return $this->hasMany(Logaktivitas::class, 'id_members', 'id');
     }
 
+    // Relasi dengan berat badan
+    public function beratBadans()
+    {
+        return $this->hasMany(BeratBadan::class, 'id_member');
+    }
 
     protected $hidden = [
         'password',

@@ -33,6 +33,8 @@
                                         <th>Materi Coach</th>
                                         <th>Keterangan Memilih Materi</th>
                                         <th>Tanggal Pilih Materi</th>
+                                        <th>Berat Badan Saat Ini</th>
+                                        <th>Target Berat Badan</th>
                                         {{-- <th>Aksi</th> --}}
                                     </tr>
                                 </thead>
@@ -50,6 +52,8 @@
                                         <td>{{ $log->materi->coach->nama }}</td>
                                         <td>{{ $log->deskripsi }}</td>
                                         <td>{{ \Carbon\Carbon::parse($log->created_at)->format('d-m-Y') }}</td>
+                                        <td>{{ $log->member->berat_badan_sekarang }} KG</td>
+                                        <td>{{ $log->member->target_berat_badan }} KG</td>
                                         {{-- <td class="d-flex align-logs-center mt-4">
                                             <form action="{{ route('member.delete', $log->id) }}" method="POST">
                                                 <button type="button" class="btn btn-danger" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#hapusModal-{{ $log->id }}">

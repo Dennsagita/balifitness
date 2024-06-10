@@ -91,8 +91,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card p-4">
+                            @if($member->berat_badan_sekarang <= $member->target_berat_badan)
+                            <h5>Selamat Target Berat Badan Terpenuhi</h5>
+                            @else
                             <h2>Hitung Berat Badan</h2>
-                            <form action="{{ route('hitungberatbadan') }}" method="post" >
+                            <form action="{{ route('hitungberatbadan') }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="row gy-4">
@@ -103,10 +106,43 @@
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-secondary">Reset</button>
-                                      </div> 
+                                    </div>
                                 </div>
                             </form>
+                            @endif
                         </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="padding-bottom: 1rem;">Data Berat Badan</h5>
+                        <div class="table-responsive">
+                            <table class="table datatable table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Berat Badan</th>
+                                        <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $startNumber = 1;
+                                    @endphp
+                                    @foreach($beratbadan as $bb) <!-- Untuk menampilkan database sesuai dengan variabel di controller-->
+                                    <tr>
+                                        <td> <p>{{ $startNumber }}</p> </td>
+                                        <td>{{ $bb->berat_badan}} KG</td>
+                                        <td>{{ \Carbon\Carbon::parse($bb->created_at)->format('d-m-Y') }}</td>
+                                    </tr>
+                                    @php
+                                    $startNumber++;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table with stripped rows -->
                     </div>
                 </div>
                 @endif
