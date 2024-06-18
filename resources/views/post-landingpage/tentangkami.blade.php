@@ -23,23 +23,22 @@
 
         <div class="row content">
           <div class="col-lg-6">
-            <h2>Eum ipsam laborum deleniti velitena</h2>
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+            <h2>BALI FITNESS SEMINYAK</h2>
+            <h3>Selamat datang di Bali Fitness Seminyak, pusat kebugaran terkemuka yang berkomitmen untuk membantu Anda mencapai kebugaran.
+            </h3>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              fasilitas kami menawarkan lingkungan yang inspiratif dan mendukung untuk semua level kebugaran, dari pemula hingga atlet profesional.
+              Kami menawarkan berbagai program kebugaran yang dapat disesuaikan dengan kebutuhan dan tujuan Anda, termasuk:
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+              <li><i class="ri-check-double-line"></i> Personal Training: Sesi latihan pribadi dengan pelatih profesional yang akan membuat program latihan yang sesuai dengan kebutuhan dan tujuan Anda.</li>
+              <li><i class="ri-check-double-line"></i> Program Calisthenic: Latihan berbasis berat tubuh yang fokus pada kekuatan, fleksibilitas, dan keterampilan tubuh.</li>
+              <li><i class="ri-check-double-line"></i> Rehabilitasi dan Pemulihan: Program khusus untuk pemulihan cedera dan peningkatan mobilitas serta kekuatan tubuh.</li>
             </ul>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Bergabunglah dengan kami di Bali Fitness Seminyak dan mulailah perjalanan Anda menuju kebugaran dan kesejahteraan. Dengan fasilitas unggulan, program yang komprehensif, dan dukungan dari tim profesional kami, Anda akan menemukan bahwa mencapai tujuan kebugaran Anda lebih mudah dan menyenangkan.
             </p>
           </div>
         </div>
@@ -72,10 +71,7 @@
                 <span>{{ $item->email }}</span>
                 <p>{{ $item->alamat }}</p>
                 <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                  <p>@balifitnessseminyak</p>
                 </div>
               </div>
             </div>

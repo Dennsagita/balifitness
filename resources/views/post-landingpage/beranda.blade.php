@@ -16,9 +16,9 @@
         <div class="carousel-item active" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/foto2.jpg') }})">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Bali Fitness Seminyak</span></h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <h2 class="animate__animated animate__fadeInDown">Selamat Datang di <span>Bali Fitness Seminyak</span></h2>
+              <p class="animate__animated animate__fadeInUp">Temukan tempat terbaik untuk mencapai kebugaran optimal. Dengan fasilitas modern dan pelatih berpengalaman, kami siap mendukung perjalanan kebugaran Anda.</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Baca Selengkapnya</a>
             </div>
           </div>
         </div>
@@ -27,9 +27,9 @@
         <div class="carousel-item" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/foto1.jpg') }})">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <h2 class="animate__animated animate__fadeInDown">Program Latihan Calisthenic yang Disesuaikan</h2>
+              <p class="animate__animated animate__fadeInUp">Dapatkan program latihan calisthenic yang dirancang khusus untuk Anda. Mulai dari gerakan dasar hingga teknik lanjutan, kami siap membantu Anda mencapai kekuatan dan fleksibilitas yang optimal.</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Baca Selengkapnya</a>
             </div>
           </div>
         </div>
@@ -38,9 +38,9 @@
         <div class="carousel-item" style="background-image: url({{ asset('assets/landingpage/assets/img/slide/foto3.jpg') }})">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <h2 class="animate__animated animate__fadeInDown">Keunggulan Kebugaran dengan Calisthenic</h2>
+              <p class="animate__animated animate__fadeInUp">Calisthenic menawarkan manfaat kebugaran menyeluruh tanpa peralatan berat. Kembangkan kekuatan tubuh, keseimbangan, dan daya tahan melalui latihan yang dapat dilakukan di mana saja.</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Baca Selengkapnya</a>
             </div>
           </div>
         </div>
@@ -66,64 +66,30 @@
 
         <div class="row content">
           <div class="col-lg-6">
-            <h2>Eum ipsam laborum deleniti velitena</h2>
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+            <h2>Apa Itu Calisthenic</h2>
+            <h3>Calisthenic adalah bentuk latihan fisik yang menggunakan berat tubuh sendiri untuk meningkatkan kekuatan, fleksibilitas, dan kebugaran keseluruhan.</h3>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              Latihan ini tidak memerlukan peralatan berat atau fasilitas khusus, sehingga bisa dilakukan di berbagai tempat seperti rumah, taman, atau ruang terbuka lainnya. 
+              Beberapa contoh gerakan calisthenic meliputi push-up, pull-up, squat, dan plank, yang semuanya memanfaatkan berat tubuh sendiri untuk menantang dan memperkuat otot-otot tubuh.
+              Calisthenic memiliki banyak keunggulan dibandingkan bentuk latihan lainnya. Salah satunya adalah kemampuan untuk meningkatkan kebugaran fungsional, yang berarti latihan ini membantu memperbaiki cara tubuh bergerak dalam kehidupan sehari-hari. 
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+              <li><i class="ri-check-double-line"></i> BUILDING MUSCLE </li>
+              <li><i class="ri-check-double-line"></i> CARDIO</li>
+              <li><i class="ri-check-double-line"></i> REHABILITATION</li>
+              <li><i class="ri-check-double-line"></i> SKILL</li>
             </ul>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Latihan calisthenic efektif untuk meningkatkan kekuatan otot seluruh tubuh. Gerakan dinamis dan statis dalam calisthenic membantu meningkatkan fleksibilitas tubuh.
+              Latihan ini membantu memperbaiki keseimbangan dan koordinasi tubuh.
             </p>
           </div>
         </div>
 
       </div>
     </section><!-- End About Section -->
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients section-bg">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('assets/landingpage/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('assets/landingpage/assets/img/clients/client-2.png') }}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('assets/landingpage/assets/img/clients/client-3.png') }}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('assets/landingpage/assets/img/clients/client-4.png') }}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('assets/landingpage/assets/img/clients/client-5.png') }}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('assets/landingpage/assets/img/clients/client-6.png') }}" class="img-fluid" alt="">
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
@@ -133,43 +99,29 @@
           <div class="col-md-6">
             <div class="icon-box">
               <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4><a href="#">BUILDING MUSCLE</a></h4>
+              <p>Building muscle melalui calisthenic adalah proses meningkatkan massa otot dengan menggunakan berat tubuh sendiri sebagai resistensi. Latihan-latihan seperti push-up, pull-up, dan squat menargetkan berbagai kelompok otot untuk merangsang pertumbuhan dan kekuatan otot. </p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
               <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <h4><a href="#">CARDIO</a></h4>
+              <p>Cardio dalam konteks calisthenic melibatkan latihan yang meningkatkan detak jantung dan sirkulasi darah dengan menggunakan gerakan tubuh yang dinamis dan ritmis. Contoh latihan cardio calisthenic meliputi burpees, jumping jacks, dan mountain climbers.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
               <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4><a href="#">REHABILITATION</a></h4>
+              <p>Rehabilitation melalui calisthenic adalah proses pemulihan fungsi fisik setelah cedera atau penyakit dengan menggunakan latihan berbasis berat tubuh. Latihan rehabilitasi calisthenic fokus pada gerakan yang aman dan terkontrol untuk memperkuat otot, meningkatkan mobilitas, dan memulihkan keseimbangan serta koordinasi.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
               <i class="bi bi-binoculars"></i>
-              <h4><a href="#">Nemo Enim</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">Magni Dolore</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-calendar4-week"></i>
-              <h4><a href="#">Eiusmod Tempor</a></h4>
-              <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <h4><a href="#">SKILL</a></h4>
+              <p>Skill dalam calisthenic merujuk pada kemampuan untuk melakukan gerakan atau teknik tertentu dengan tingkat kemahiran yang tinggi. Keterampilan calisthenic mencakup berbagai teknik mulai dari dasar hingga lanjutan, seperti handstand, muscle-up, dan planche. Mengembangkan keterampilan ini memerlukan latihan berulang, ketekunan, dan peningkatan progresif. </p>
             </div>
           </div>
         </div>

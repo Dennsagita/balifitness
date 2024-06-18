@@ -120,7 +120,6 @@
                             <img src="{{ asset('assets/img/profilekosong.jpg') }}" alt="{{ $admin->nama }}">
                         @endif
                         <div class="pt-2">
-                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                             <input type="file" name="image" accept="image/*" multiple data-max_length="20">
                         </div>
                     </div>
