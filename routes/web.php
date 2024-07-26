@@ -75,6 +75,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/delete_kategori/{id}', [MateriController::class, 'deletekategori'])->name('kategori-delete');
 
     Route::get('/data-logaktivitas', [LogaktivitasController::class, 'logaktivitas'])->name('data-logaktivitas');
+    Route::get('lihat-materi/{tahun}/{bulan}/{materi}', [LogaktivitasController::class, 'lihatcetakmateri'])->name('lihatlapmateri');
     Route::get('/profil-admin', [AdminController::class, 'profiladmin'])->name('profiladmin');
     Route::put('/profile-editadmin', [AdminController::class, 'updateadmin'])->name('updateadmin');
     Route::post('/ubah-password-admin', [AuthController::class, 'ubahpassword'])->name('ubahpasswordadmin');
@@ -95,6 +96,7 @@ Route::middleware('auth:member')->group(function () {
 
 Route::middleware('auth:coach')->group(function () {
     Route::get('/materi-coach', [CoachController::class, 'coach'])->name('materi-coach');
+    Route::get('laporan-materi/{tahun}/{bulan}/{materi}', [CoachController::class, 'cetakmatericoach'])->name('lapmatericoach');
     Route::get('/profil-coach', [CoachController::class, 'profilcoach'])->name('profilcoach');
     Route::put('/profile-editcoach', [CoachController::class, 'updatecoach'])->name('updatecoach');
     Route::post('/ubah-password-coach', [AuthController::class, 'ubahpassword'])->name('ubahpasswordcoach');

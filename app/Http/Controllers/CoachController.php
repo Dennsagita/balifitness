@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Coach;
 use App\Models\Image;
+use App\Models\Materi;
 use App\Models\Logaktivitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -78,9 +81,55 @@ class CoachController extends Controller
         $logaktivitas = Logaktivitas::whereHas('materi', function ($query) use ($coachId) {
             $query->where('id_coach', $coachId);
         })->get();
+        // Mengambil data materi yang berelasi dengan coach yang sedang login
+        $materi = Coach::find($coachId)->materis;
+        // Menghitung jumlah log aktivitas per materi untuk coach yang sedang login
+        $logaktivitas1 = Logaktivitas::with('materi')
+            ->whereHas('materi', function ($query) use ($coachId) {
+                $query->where('id_coach', $coachId);
+            })
+            ->select('id_materi', DB::raw('count(*) as total'))
+            ->groupBy('id_materi')
+            ->get();
 
+        // Menghubungkan data materi dengan total log aktivitas
+        $logAktivitasData = $materi->map(function ($materi) use ($logaktivitas1) {
+            $log = $logaktivitas1->firstWhere('id_materi', $materi->id);
+            return [
+                'nama' => $materi->nama,
+                'total' => $log ? $log->total : 0
+            ];
+        });
         // Mengirim data log aktivitas ke view
-        return view('post-dashboard.coach-dashboard.materi-coach', compact('logaktivitas', 'coach'));
+        return view('post-dashboard.coach-dashboard.materi-coach', compact('logaktivitas', 'coach', 'materi', 'logAktivitasData'));
+    }
+
+    public function cetakmatericoach($tahun, $bulan, $materi)
+    {
+        // Konversi tahun dan bulan menjadi format Carbon
+        $tanggal = Carbon::create($tahun, $bulan, 1);
+
+        // Mengambil ID coach yang sedang login
+        $coachId = Auth::guard('coach')->user()->id;
+        // Mengambil ID coach yang sedang login
+        $coach = Auth::guard('coach')->user();
+
+        // Mendapatkan data log aktivitas berdasarkan ID materi, tahun, bulan, dan ID coach
+        $logaktivitas = Logaktivitas::with(['member', 'materi'])
+            ->whereHas('materi', function ($query) use ($materi, $coachId) {
+                $query->where('id', $materi) // Sesuaikan dengan parameter materi dari form filter
+                    ->where('id_coach', $coachId); // Filter berdasarkan ID coach yang sedang login
+            })
+            ->whereYear('created_at', $tanggal->year)
+            ->whereMonth('created_at', $tanggal->month)
+            ->get();
+
+        // Menghitung nomor urut pada halaman saat ini
+        $currentPage = request()->get('page', 1);
+        $itemsPerPage = 5;
+        $startNumber = ($currentPage - 1) * $itemsPerPage + 1;
+
+        return view('post-dashboard.coach-dashboard.laporan', compact('logaktivitas', 'tanggal', 'startNumber', 'coach'));
     }
 
     public function profilcoach()
