@@ -25,12 +25,13 @@ class LogaktivitasController extends Controller
             ->groupBy('id_materi')
             ->get();
 
-        // Menghubungkan data materi dengan total log aktivitas
+        // Menghubungkan data materi dengan total log aktivitas dan nama coach
         $logAktivitasData = $materi->map(function ($materi) use ($logaktivitas1) {
             $log = $logaktivitas1->firstWhere('id_materi', $materi->id);
             return [
                 'nama' => $materi->nama,
-                'total' => $log ? $log->total : 0
+                'total' => $log ? $log->total : 0,
+                'coach' => $materi->coach->nama  // Asumsi bahwa 'coach' adalah relasi dari model Materi
             ];
         });
         return view('post-dashboard.log_aktivitas.log_aktivitas', compact('logaktivitas', 'admin', 'materi', 'logAktivitasData'));

@@ -97,6 +97,7 @@ Route::middleware('auth:member')->group(function () {
 Route::middleware('auth:coach')->group(function () {
     Route::get('/materi-coach', [CoachController::class, 'coach'])->name('materi-coach');
     Route::get('laporan-materi/{tahun}/{bulan}/{materi}', [CoachController::class, 'cetakmatericoach'])->name('lapmatericoach');
+    Route::patch('/informasi-exercise/{id}', [CoachController::class, 'InformasiExercise'])->name('informasiexercise');
     Route::get('/profil-coach', [CoachController::class, 'profilcoach'])->name('profilcoach');
     Route::put('/profile-editcoach', [CoachController::class, 'updatecoach'])->name('updatecoach');
     Route::post('/ubah-password-coach', [AuthController::class, 'ubahpassword'])->name('ubahpasswordcoach');

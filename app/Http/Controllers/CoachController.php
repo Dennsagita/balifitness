@@ -6,11 +6,14 @@ use Carbon\Carbon;
 use App\Models\Coach;
 use App\Models\Image;
 use App\Models\Materi;
+use App\Models\Member;
 use App\Models\Logaktivitas;
 use Illuminate\Http\Request;
+use App\Mail\SendEmailLaporan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CoachController extends Controller
@@ -130,6 +133,23 @@ class CoachController extends Controller
         $startNumber = ($currentPage - 1) * $itemsPerPage + 1;
 
         return view('post-dashboard.coach-dashboard.laporan', compact('logaktivitas', 'tanggal', 'startNumber', 'coach'));
+    }
+
+    public function InformasiExercise(Request $request, $id)
+    {
+        $logaktivitas = Logaktivitas::findOrFail($id);
+
+        $data = [
+            'id_member' => $logaktivitas->member->id,
+            'nama' => $logaktivitas->member->nama,
+            'tanggal' => $logaktivitas->member->created_at,
+            'coach' => $logaktivitas->materi->coach->nama,
+            'informasi' => $request->informasi, // Terima alasan pembatalan dari form
+        ];
+
+        Mail::to($request->recipient_email) // Menggunakan alamat email penerima dari input form
+            ->send(new SendEmailLaporan($data));
+        return redirect()->route('materi-coach')->with('informasi', 'Pesan berhasil dikirim');
     }
 
     public function profilcoach()
