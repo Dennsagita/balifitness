@@ -89,7 +89,7 @@
                                         <th>Tanggal Pilih Materi</th>
                                         <th>Berat Badan Saat Ini</th>
                                         <th>Target Berat Badan</th>
-                                        {{-- <th>Aksi</th> --}}
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,6 +108,11 @@
                                         <td>{{ \Carbon\Carbon::parse($log->created_at)->format('d-m-Y') }}</td>
                                         <td>{{ $log->member->berat_badan_sekarang }} KG</td>
                                         <td>{{ $log->member->target_berat_badan }} KG</td>
+                                            <td class="align-items-center">
+                                                <a href="{{ route('lihatlogaktivitas', ['logaktivitasid' => $log->id]) }}" class="btn btn-warning" >
+                                                        <i class="bi bi-eye"></i> Lihat
+                                                </a>
+                                            </td>
                                     </tr>
                                     @php
                                     $startNumber++;

@@ -136,6 +136,10 @@
                                                     </div>
                                                 </div>
                                             </form>
+                                            <br>
+                                                <a href="{{ route('lihatlogaktivitascoach', ['logaktivitasid' => $log->id]) }}" class="btn btn-warning" >
+                                                        <i class="bi bi-eye"></i> Lihat
+                                                </a>
                                         </td>
                                     </tr>
                                     @php

@@ -7,6 +7,7 @@ use App\Models\Materi;
 use App\Models\Member;
 use App\Models\Kategori;
 use App\Models\BeratBadan;
+use App\Models\Monitoring;
 use App\Models\Logaktivitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,8 +65,15 @@ class MemberController extends Controller
         }
 
         $materi = $query->get();
+        // Mendapatkan materi dengan jumlah log aktivitas terbanyak
+        $topMateri = Materi::select('materis.id', 'materis.nama')
+            ->leftJoin('log_aktivitas', 'materis.id', '=', 'log_aktivitas.id_materi')
+            ->selectRaw('count(log_aktivitas.id) as log_count')
+            ->groupBy('materis.id', 'materis.nama')
+            ->orderBy('log_count', 'desc')
+            ->first(); // Ambil satu materi teratas
 
-        return view('post-dashboard.member-dashboard.materi-member', compact('materi', 'kategori', 'member'));
+        return view('post-dashboard.member-dashboard.materi-member', compact('materi', 'kategori', 'member', 'topMateri'));
     }
 
 
@@ -199,8 +207,40 @@ class MemberController extends Controller
         // Mengambil informasi materi berdasarkan ID materi dari log aktivitas
         $materi = Materi::findOrFail($logaktivitas->id_materi);
 
+        // Mengambil semua entri monitoring yang terkait dengan log aktivitas ini
+        $monitorings = $logaktivitas->monitoring;
+
         // Mengirimkan data materi ke view
-        return view('post-dashboard.member-dashboard.lihat_materi', compact('materi', 'member'));
+        return view('post-dashboard.member-dashboard.lihat_materi', compact('materi', 'member', 'monitorings', 'logaktivitas'));
+    }
+
+    public function tambahmonitoring(Request $request)
+    {
+        $request->validate([
+            'link' => 'required|string',
+            'id_log_aktivitas' => 'required',
+        ]);
+
+        Monitoring::create([
+            'link' => $request->input('link'),
+            'id_log_aktivitas' => $request->input('id_log_aktivitas'),
+        ]);
+
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan.');
+    }
+
+    public function updatemonitoring(Request $request, $id)
+    {
+        $request->validate([
+            'link' => 'required|string',
+        ]);
+
+        $monitoring = Monitoring::findOrFail($id);
+        $monitoring->update([
+            'link' => $request->input('link'),
+        ]);
+
+        return redirect()->back()->with('edit', 'Data berhasil diperbarui.');
     }
 
     public function profilmember()

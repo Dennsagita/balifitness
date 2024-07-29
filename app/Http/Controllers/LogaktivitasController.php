@@ -55,4 +55,22 @@ class LogaktivitasController extends Controller
 
         return view('post-dashboard.log_aktivitas.laporan', compact('materi', 'tanggal', 'startNumber'));
     }
+
+    public function lihatlogaktivitas($logaktivitasid)
+    {
+        // Mengambil data admin yang sedang login
+        $admin = Auth::guard('admin')->user();
+
+        // Mengambil log aktivitas berdasarkan ID
+        $logaktivitas = Logaktivitas::findOrFail($logaktivitasid);
+
+        // Mengambil informasi materi berdasarkan ID materi dari log aktivitas
+        $materi = Materi::findOrFail($logaktivitas->id_materi);
+
+        // Mengambil semua entri monitoring yang terkait dengan log aktivitas ini
+        $monitorings = $logaktivitas->monitoring;
+
+        // Mengirimkan data ke view
+        return view('post-dashboard.log_aktivitas.detail', compact('materi', 'admin', 'monitorings', 'logaktivitas'));
+    }
 }

@@ -26,4 +26,9 @@ class Logaktivitas extends Model
     {
         return $this->belongsTo(Materi::class, 'id_materi');
     }
+
+    public function monitoring()
+    {
+        return $this->hasMany(Monitoring::class, 'id_log_aktivitas');
+    }
 }

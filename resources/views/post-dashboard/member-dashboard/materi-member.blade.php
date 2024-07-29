@@ -44,6 +44,7 @@
             </div>            
         </nav>
     </div><!-- End Page Title -->
+    
     <div class="card-container">
         <div class="row">
             @foreach($materi as $materi)
@@ -66,7 +67,24 @@
             @endforeach
         </div>
     </div>
-
+     <!-- Rekomendasi Materi Paling Banyak Dipilih -->
+     @if($topMateri)
+     <div class="card">
+         <div class="card-body">
+             <h5 class="card-title">Rekomendasi Materi</h5>
+             <div class="card">
+                 <img src="{{ $topMateri->images ? asset('storage/' . $topMateri->images->src) : asset('assets/img/materikosong.jpg') }}" class="card-img-top" alt="{{ $topMateri->nama }}">
+                 <div class="card-body">
+                     <h5 class="card-title">{{ $topMateri->nama }}</h5>
+                     <p>{{ $topMateri->log_count }} Member memilih materi ini</p>
+                     <a href="{{ route('pilihmateri', $topMateri->id) }}" class="btn btn-primary">Lihat Materi</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ @else
+     <div class="alert alert-info">Belum ada materi yang dipilih.</div>
+ @endif
 
 </main><!-- End #main -->
 @endsection

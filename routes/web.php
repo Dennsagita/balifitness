@@ -75,6 +75,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/delete_kategori/{id}', [MateriController::class, 'deletekategori'])->name('kategori-delete');
 
     Route::get('/data-logaktivitas', [LogaktivitasController::class, 'logaktivitas'])->name('data-logaktivitas');
+    Route::get('/lihat-logaktivitas/{logaktivitasid}', [LogaktivitasController::class, 'lihatlogaktivitas'])->name('lihatlogaktivitas');
     Route::get('lihat-materi/{tahun}/{bulan}/{materi}', [LogaktivitasController::class, 'lihatcetakmateri'])->name('lihatlapmateri');
     Route::get('/profil-admin', [AdminController::class, 'profiladmin'])->name('profiladmin');
     Route::put('/profile-editadmin', [AdminController::class, 'updateadmin'])->name('updateadmin');
@@ -85,6 +86,8 @@ Route::middleware('auth:member')->group(function () {
     Route::get('/materi-member', [MemberController::class, 'member'])->name('materi-member');
     Route::get('/pilih-materi/{id}', [MemberController::class, 'pilihmateri'])->name('pilihmateri');
     Route::post('/proses-pilihmateri', [MemberController::class, 'prosespilihmateri'])->name('prosespilihmateri');
+    Route::post('/tambah-monitoring', [MemberController::class, 'tambahmonitoring'])->name('tambahmonitoring');
+    Route::put('/update-monitoring/{id}', [MemberController::class, 'updatemonitoring'])->name('updatemonitoring');
     Route::get('/member-logaktivitas', [MemberController::class, 'logaktivitasmember'])->name('member-logaktivitas');
     Route::put('/tambahberatbadan', [MemberController::class, 'tambahberatbadan'])->name('tambahberatbadan');
     Route::put('/hitungberatbadan', [MemberController::class, 'hitungberatbadan'])->name('hitungberatbadan');
@@ -97,6 +100,7 @@ Route::middleware('auth:member')->group(function () {
 Route::middleware('auth:coach')->group(function () {
     Route::get('/materi-coach', [CoachController::class, 'coach'])->name('materi-coach');
     Route::get('laporan-materi/{tahun}/{bulan}/{materi}', [CoachController::class, 'cetakmatericoach'])->name('lapmatericoach');
+    Route::get('/lihat-logaktivitas/{logaktivitasid}', [CoachController::class, 'lihatlogaktivitascoach'])->name('lihatlogaktivitascoach');
     Route::patch('/informasi-exercise/{id}', [CoachController::class, 'InformasiExercise'])->name('informasiexercise');
     Route::get('/profil-coach', [CoachController::class, 'profilcoach'])->name('profilcoach');
     Route::put('/profile-editcoach', [CoachController::class, 'updatecoach'])->name('updatecoach');

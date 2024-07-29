@@ -106,7 +106,23 @@ class CoachController extends Controller
         // Mengirim data log aktivitas ke view
         return view('post-dashboard.coach-dashboard.materi-coach', compact('logaktivitas', 'coach', 'materi', 'logAktivitasData'));
     }
+    public function lihatlogaktivitascoach($logaktivitasid)
+    {
+        // Mendapatkan Data coach yang sedang login
+        $coach = Auth::guard('coach')->user();
 
+        // Mengambil log aktivitas berdasarkan ID
+        $logaktivitas = Logaktivitas::findOrFail($logaktivitasid);
+
+        // Mengambil informasi materi berdasarkan ID materi dari log aktivitas
+        $materi = Materi::findOrFail($logaktivitas->id_materi);
+
+        // Mengambil semua entri monitoring yang terkait dengan log aktivitas ini
+        $monitorings = $logaktivitas->monitoring;
+
+        // Mengirimkan data ke view
+        return view('post-dashboard.coach-dashboard.detail', compact('materi', 'coach', 'monitorings', 'logaktivitas'));
+    }
     public function cetakmatericoach($tahun, $bulan, $materi)
     {
         // Konversi tahun dan bulan menjadi format Carbon
