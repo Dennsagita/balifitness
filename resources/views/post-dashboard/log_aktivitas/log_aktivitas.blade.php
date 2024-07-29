@@ -109,7 +109,7 @@
                                         <td>{{ $log->member->berat_badan_sekarang }} KG</td>
                                         <td>{{ $log->member->target_berat_badan }} KG</td>
                                             <td class="align-items-center">
-                                                <a href="{{ route('lihatlogaktivitas', ['logaktivitasid' => $log->id]) }}" class="btn btn-warning" >
+                                                <a href="{{ route('lihatlogaktivitasadmin', ['logaktivitasid' => $log->id]) }}" class="btn btn-warning" >
                                                         <i class="bi bi-eye"></i> Lihat
                                                 </a>
                                             </td>
